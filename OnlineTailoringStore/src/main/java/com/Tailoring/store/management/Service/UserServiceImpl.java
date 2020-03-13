@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.Tailoring.store.management.Model.Admin;
+import com.Tailoring.store.management.Model.Measurements;
 import com.Tailoring.store.management.Model.Tailor;
 import com.Tailoring.store.management.Model.User;
 
@@ -54,6 +55,7 @@ public class UserServiceImpl implements UserService {
 				user.setUserId(set.getString("username"));
 				user.setPassword(set.getString("password"));
 				user.setCategory(set.getString("category"));
+				
 				return user;
 			}
 		});
@@ -87,6 +89,25 @@ public class UserServiceImpl implements UserService {
 				}
 			});
 			return dress;
+		}
+		
+		public boolean addmeasurements(Measurements measurements) {
+			
+			
+			String sql = "insert into measurements(top_fabric,top_material,top_duration,top_length,top_quantity,neck,waist,chest,shoulder_length,bottom_fabric,bottom_material,bottom_duration,bottom_length,bottom_quantity,hip,knee_length) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				
+			try {
+				int counter = jdbcTemplate.update(sql,
+						new Object[] { measurements.getTop_fabric(),measurements.getTop_material(),measurements.getTop_duration(),measurements.getToplength(),measurements.getTop_quantity(), measurements.getNeck(),
+								       measurements.getTopwaist(), measurements.getChest(),measurements.getShoulderLength() , measurements.getBottom_fabric(),measurements.getBottom_material(),measurements.getBottom_duration(),
+								       measurements.getBottomlength(),measurements.getBottom_quantity(),measurements.getHip(),measurements.getKneelength()});
+
+				return true;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
 		}
 		
 		

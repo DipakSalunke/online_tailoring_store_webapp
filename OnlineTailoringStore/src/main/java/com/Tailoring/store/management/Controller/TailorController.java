@@ -1,5 +1,6 @@
 package com.Tailoring.store.management.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import com.Tailoring.store.management.Service.TailorService;
 import com.Tailoring.store.management.Service.UserService;
 import com.Tailoring.store.management.Service.UserService;
 import com.Tailoring.store.management.Service.UserServiceImpl;
+import com.Tailoring.store.management.Model.PatternAndCost;
 import com.Tailoring.store.management.Model.Tailor;
 import com.Tailoring.store.management.Model.User;
 import com.Tailoring.store.management.Model.User;
@@ -111,6 +113,36 @@ public class TailorController {
 			return "tailorSuccessLogin";
 		}
 	}
+	
+	
+	/////////////////////////////
+	//update pattern cost
+	
+	@RequestMapping(value="/updatePatterns", method=RequestMethod.GET)
+	public String updatePatternAndCost(@ModelAttribute("update") PatternAndCost pattern,ModelMap model){
+		List<String> dresstype= new ArrayList<String>();
+		//List<DressType> dresstype= tailorService.readDressType();
+	     dresstype=tailorService.readDressType();
+		model.put("dresstype", dresstype);
+		return "updatePatternAndCost";
+	}
+	
+
+	@RequestMapping(value="/updatePatternsSuccess", method=RequestMethod.POST)
+	public String updatePatternAndCostSuccess(@ModelAttribute("update") PatternAndCost pattern,ModelMap model){
+		String name=(String) model.get("name");
+		System.out.println((String) model.get("name"));
+		if(tailorService.addPatternAndCost(pattern, name)) {
+			model.put("updatepatternStatus", "Pattern Added Successfully");
+		}
+		else {
+			model.put("updatepatternStatus", "Error Occured");
+		}
+		
+		return "tailorSuccessLogin";
+	}
+	
+	
 	
 	
 //	List<Tailor> TailorList = userService.readTailors(user.getCategoryType(), user.getDressType());

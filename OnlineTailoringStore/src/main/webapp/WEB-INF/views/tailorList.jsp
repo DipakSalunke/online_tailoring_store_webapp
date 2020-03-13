@@ -18,7 +18,7 @@
 			<tbody>
 		<c:forEach items="${TailorList}" var="Tailor">
 		<tr>
-			<td>${Tailor.shopName}</td>
+			<td><a href = "/uploadmeasurement">${Tailor.shopName}</a></td>
 			<td>${Tailor.address}</td>
 			<td>${Tailor.contactNumber}</td>
 			<td>${Tailor.workingHours}</td>

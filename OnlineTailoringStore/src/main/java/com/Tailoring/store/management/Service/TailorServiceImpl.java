@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.Tailoring.store.management.Model.PatternAndCost;
 import com.Tailoring.store.management.Model.Tailor;
 
 @Service("tailorService")
@@ -118,5 +119,47 @@ public class TailorServiceImpl implements TailorService {
 				}
 			
 			}
+				/////////////////////////////////////////
+			//ADD PATTERN COST
+			///////////////
+			
+			public boolean addPatternAndCost(PatternAndCost pattern,String name) {
+				String sql = "insert into pattern(caption,cost,dressId) values(?,?,?)";
+				int id1 = 0;
+				int id2=0;
+				try { 
+					
+					String sql2 = "SELECT id FROM dress_type WHERE dress_type ='"+pattern.getDressType()+ "'";
+					
+			     
+			     id1= jdbcTemplate.queryForObject(sql2, Integer.class);
+			     String sql1 = "SELECT id FROM tailordresstypes WHERE dress_type_id ='"+id1+ "'";
+			     id2= jdbcTemplate.queryForObject(sql1, Integer.class);
+					int counter = jdbcTemplate.update(sql,
+							new Object[] {pattern.getPattern(),pattern.getCost(),id2 });
 
+					 return true;
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					return false;
+				}
+}
+			
+			
+			public List<String> readDressType() {
+				List<String> userList = jdbcTemplate.query("select dress_type from tailordresstypes,dress_type where tailordresstypes.dress_type_id= dress_type.id", new RowMapper<String>() {
+
+					@Override
+					public String mapRow(ResultSet set, int rowNum) throws SQLException {
+						
+						
+
+						
+						
+						return set.getString("dress_type");
+					}
+				});
+				return userList;
+			}
 }

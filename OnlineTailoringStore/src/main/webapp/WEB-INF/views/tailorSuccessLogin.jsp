@@ -12,7 +12,7 @@
 <br><br>
 <a href="/updateDressTypes">update dress types</a> ${dressstatus}
 <br><br>
-<a href="/updatePatterns">update pattern and cost Details</a>
+<a href="/updatePatterns">update pattern and cost Details</a>${updatepatternStatus}
 <br><br>
 <a href="/viewOrders">view orders</a>
 <br><br>

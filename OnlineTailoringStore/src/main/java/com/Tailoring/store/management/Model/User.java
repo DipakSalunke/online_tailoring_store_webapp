@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class User {
-	
+	private int uid;
 	private String firstName;
 	private String lastName;
 	private String dateOfBirth;
@@ -16,6 +16,15 @@ public class User {
 	private String password;
 	private String categoryType;
 	private String dressType;
+	
+	public int getUid() {
+		return uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+
 	public String getCategoryType() {
 		return categoryType;
 	}

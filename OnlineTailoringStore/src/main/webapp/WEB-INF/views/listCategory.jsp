@@ -1,5 +1,5 @@
 <%@ include file="common/header.jspf"%>
-<%@ include file="common/navigation_user.jspf"%>
+<%@ include file="common/navigation_tailor.jspf"%>
 <div class="container">
 	<h1>
 		<center>Select Category</center>

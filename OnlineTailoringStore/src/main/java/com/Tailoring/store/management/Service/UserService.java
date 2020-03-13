@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.Tailoring.store.management.Model.Admin;
+import com.Tailoring.store.management.Model.Measurements;
 import com.Tailoring.store.management.Model.Tailor;
 import com.Tailoring.store.management.Model.User;
 
@@ -26,4 +27,6 @@ public List<String> readCategory();
 	public List<String> readDress(String categoryType);
 	
 	public List<Tailor> readTailors(String categoryType, String dressType); 
+	
+	public boolean addmeasurements(Measurements measurements);
 }

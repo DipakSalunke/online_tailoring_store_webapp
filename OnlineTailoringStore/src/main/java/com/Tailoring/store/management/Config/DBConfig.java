@@ -19,7 +19,7 @@ public class DBConfig {
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/OnlineTailoringSystem?useSSL=false");
 		dataSource.setUsername("root");
-		dataSource.setPassword("password");
+		dataSource.setPassword("admin");
 		return dataSource;
 	}
 
